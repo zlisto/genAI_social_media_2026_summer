@@ -40,9 +40,25 @@ st.markdown(
 
     html, body, [class*="css"] {
         font-family: 'IBM Plex Sans', 'DM Sans', sans-serif;
+        color: #0a2540;
     }
     .stApp {
         background: linear-gradient(165deg, #f7f9f9 0%, #eef3f7 45%, #e8eef5 100%);
+        color: #0a2540;
+    }
+    .stApp [data-testid="stMain"] p,
+    .stApp [data-testid="stMain"] span,
+    .stApp [data-testid="stMain"] label,
+    .stApp [data-testid="stMain"] li,
+    .stApp [data-testid="stMain"] h1,
+    .stApp [data-testid="stMain"] h2,
+    .stApp [data-testid="stMain"] h3,
+    .stApp [data-testid="stMain"] .stMarkdown,
+    .stApp [data-testid="stMain"] [data-testid="stCaptionContainer"],
+    div[data-testid="stMetric"] label,
+    div[data-testid="stMetric"] [data-testid="stMetricValue"],
+    div[data-testid="stMetric"] [data-testid="stMetricDelta"] {
+        color: #0a2540 !important;
     }
     [data-testid="stSidebar"] {
         background: #0f1419;
@@ -65,11 +81,11 @@ st.markdown(
         font-size: 2.35rem;
         font-weight: 700;
         letter-spacing: -0.03em;
-        color: #0f1419;
+        color: #0a2540;
         margin-bottom: 0.15rem;
     }
     .hero-sub {
-        color: #536471;
+        color: #1e3a5f;
         font-size: 1.05rem;
         margin-bottom: 1.25rem;
     }
@@ -84,18 +100,18 @@ st.markdown(
         box-shadow: 0 8px 24px rgba(15, 20, 25, 0.06);
     }
     .tweet-meta {
-        color: #536471;
+        color: #1e3a5f;
         font-size: 0.92rem;
     }
     .tweet-body {
         font-size: 1.15rem;
         line-height: 1.45;
-        color: #0f1419;
+        color: #0a2540;
         margin: 0.65rem 0 0.85rem 0;
         white-space: pre-wrap;
     }
     .tweet-stats {
-        color: #536471;
+        color: #1e3a5f;
         font-size: 0.9rem;
         letter-spacing: 0.02em;
     }
