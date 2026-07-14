@@ -1,51 +1,38 @@
-Build a professional, single-file Streamlit app called "Tweet Analytics Dashboard". 
+Build a polished, single-file Streamlit app called "Tweet Analytics Dashboard".
 
-**Context:** I am a social media manager analyzing a CSV of tweet data. I need to visualize engagement and use OpenAI to analyze the "vibe" and personality of the account.
+**Context:** I am a social media manager analyzing a CSV of tweet exports. I need engagement charts plus OpenAI analysis of the account's vibe, personality, and a draft tweet in their voice.
 
 **Tech Stack:**
 - Streamlit (UI)
-- Pandas (Data processing)
-- Altair (Time-series charts)
-- Plotly (Radar charts)
-- OpenAI API (LLM analysis)
-- python-dotenv (Environment variables)
+- Pandas (data)
+- Altair (time-series scatter charts)
+- Plotly (radar chart)
+- OpenAI Python SDK (LLM calls)
+- python-dotenv (API key from `.env`)
 
-**Design System:**
-- Layout: Wide mode.
-- Theme: Professional Blue/White.
-- Inject Custom CSS to style headers (#1f77b4), metrics cards (#f0f2f6), and buttons.
+**Model:** Use **`gpt-5.6`** for every OpenAI call (vibe report, personality JSON, tweet generation).
 
-**Data Requirements:**
-The app must accept a CSV upload with columns: `text`, `view_count`, `created_at`, `favorite_count`.
-Calculate a calculated column `engagement` = `favorite_count` / `view_count`.
+**Design:**
+- `layout="wide"`, clean dark-sidebar / light-main look inspired by X (not purple gradients).
+- Soft metric cards, clear typography, primary accent `#1d9bf0`.
+- Keep AI results in `st.session_state` so switching sections does not wipe them.
 
-**Feature Requirements (Tabs):**
+**Data:**
+- Accept CSV upload with at least: `text`, `view_count`, `created_at`, `favorite_count`.
+- Optionally use `retweet_count` / `reply_count` if present.
+- Parse dates; coerce numerics; compute `engagement = favorite_count / view_count` (safe divide-by-zero).
+- Sidebar: file uploader **plus** one-click demo loaders for sample CSVs already in the project folder.
 
-1. **Tab 1: Overview**
-   - Show 4 metrics at the top: Total Tweets, Total Favorites, Avg Favorites, Max Favorites.
-   - Show a Dataframe below. Allow sorting by Engagement, Favorites, or Date via a selectbox.
+**Sections (sidebar nav or tabs):**
 
-2. **Tab 2: Engagement Charts (Altair)**
-   - Chart 1: Scatter plot of 'created_at' (x) vs 'engagement' (y). Color by engagement score.
-   - Chart 2: Scatter plot of 'created_at' (x) vs 'favorite_count' (y).
+1. **Overview** — metrics (tweets, favorites, avg favorites, max favorites, avg engagement %). Sortable tweet table.
+2. **Engagement** — Altair scatters: date vs engagement; date vs favorites. Tooltips with tweet text.
+3. **Vibe Report** — button runs GPT on a mix of top-engagement + recent tweets (~40). Return **raw HTML only** covering Persona, Writing Style, Engagement Insights. Render with `unsafe_allow_html`.
+4. **Personality** — GPT with `response_format={"type": "json_object"}` for Big Five (+ a short summary). Plotly radar 0–100.
+5. **Generate Tweet** — few-shot from top tweets; return tweet text only. Show an X-style preview card (avatar, handle, fake metrics).
 
-3. **Tab 3: Marketing Analysis (AI Agent)**
-   - Button: "Analyze My Vibe".
-   - Action: Send a sample of top 50 tweets to OpenAI (gpt-4).
-   - Prompt Engineering: Ask the AI to return **Raw HTML** (no markdown) for a report covering Persona, Writing Style, and Engagement Insights. Render this HTML safely.
-
-4. **Tab 4: Personality Profile (AI Agent)**
-   - Button: "Analyze Personality".
-   - Action: Send tweets to OpenAI (gpt-4o) with `response_format={"type": "json_object"}`.
-   - Prompt Engineering: Ask for Big 5 traits (Openness, Conscientiousness, etc.) scored 0-100.
-   - Visualization: Use **Plotly** to render a blue Radar Chart (Spider Web) of these scores.
-
-5. **Tab 5: Generate Tweet (AI Agent)**
-   - Button: "Generate Tweet".
-   - Action: Send top performing tweets to OpenAI (gpt-4o) as few-shot examples. Ask it to write a new tweet in that exact style.
-   - UI: Display the result in a `st.container` with a border, an avatar image, and the text, mimicking the look of a real Twitter/X post card.
-
-**Error Handling:**
-- Handle missing CSV uploads gracefully.
-- Ensure OpenAI API keys are checked (`os.getenv`).
-- Use `st.session_state` to prevent data from disappearing when switching tabs.
+**Quality bar:**
+- Graceful empty state before upload.
+- Clear spinner copy while models run.
+- Strip markdown fences if the model wraps HTML/JSON by mistake.
+- Do not hardcode API keys; read `OPENAI_API_KEY` from the environment.
