@@ -21,7 +21,7 @@
     <div class="sidebar">
       <a href="#cursor">Cursor</a>
       <a href="#streamlit">Streamlit</a>
-      <a href="#react">React + Node.js</a>
+      <a href="#react">Vite + React</a>
       <a href="#github">GitHub</a>
       <a href="#elevenlabs">ElevenLabs</a>
       <a href="#gemini">Gemini</a>
@@ -75,19 +75,19 @@
         </ul>
 
       <h2 id="streamlit">Streamlit Apps</h2>
-      <p>Follow these steps to buid and run a streamlit app in Cursor:</p>
+      <p>Follow these steps to build and run a Streamlit app in Cursor:</p>
       <ul>
-        <li>In the Cursor agent chat, type in or copy and paste the AI prompt for the streamlit app you 
-          want to run and let it write the code for you.   </li>
+        <li>In the Cursor agent chat, type in or copy and paste the AI prompt for the Streamlit app you
+          want to run and let it write the code for you.
           <ul>
-            <li>Make sure it writes a file called app.py. </li>
-        </ul>
-        
-        <li>In the Cursor agent chat, ask it to write the requirements file for the app.  
-          <ul>
-            <li>Make sure it write a file called requirements.txt. </li>
+            <li>Make sure it writes a file called <code>app.py</code>.</li>
           </ul>
-            
+        </li>
+        <li>In the Cursor agent chat, ask it to write the requirements file for the app.
+          <ul>
+            <li>Make sure it writes a file called <code>requirements.txt</code>.</li>
+          </ul>
+        </li>
         <li>In the terminal, install the dependencies:</li>
       </ul>
       <pre class="terminal"><code>pip install -r requirements.txt</code></pre>
@@ -99,87 +99,100 @@
         <li>The app should run in your web browser at <code>http://localhost:8501</code></li>
       </ul>
 
-    <h2 id="react">React + Node.js</h2>
-    <p>For a video walkthrough on how to install React and Node.js, see <a href="https://www.youtube.com/watch?v=BCX6UVQba4U" target="_blank">this YouTube tutorial</a>.</p>
+    <h2 id="react">Vite + React (Node.js)</h2>
+    <p>Modern React apps in this course use <strong>Vite</strong>. You only need to install Node.js once; then you can scaffold and run Vite projects from Cursor’s terminal.</p>
+
+    <h3>Install Node.js</h3>
     <ul>
-      <li><strong>Install Node.js:</strong>
-        <ul>
-          <li>Go to <a href="https://nodejs.org/" target="_blank">https://nodejs.org/</a></li>
-          <li>Download the **LTS** version for your operating system (recommended)</li>
-          <li>Run the installer and follow the prompts</li>
-          <li><strong>Note:</strong> The installer may offer optional tools for building native modules. If you run into errors during this step, you can safely skip installing those optional tools — React and Node.js will work fine without them.</li>
-        </ul>
-      </li>
-      <li><strong>Verify Node and npm:</strong>
-        <ul>
-          <li>Open a terminal and run:</li>
-        </ul>
-        <pre class="terminal"><code>node -v
+      <li>Go to <a href="https://nodejs.org/en/download/" target="_blank">https://nodejs.org/en/download/</a></li>
+      <li>Download the <strong>LTS</strong> installer for your operating system (recommended for class work). Avoid the “Current” release unless you have a specific reason.</li>
+      <li><strong>Windows:</strong> Run the <code>.msi</code> installer. Keep the default options so Node and npm are added to <code>PATH</code>. If the installer offers optional tools for native modules (Visual Studio Build Tools / Python), you can skip them for this course.</li>
+      <li><strong>Mac:</strong> Run the <code>.pkg</code> installer and complete the wizard. (Optional: if you use Homebrew, <code>brew install node</code> also works.)</li>
+      <li><strong>Important:</strong> Quit and reopen Cursor (or open a new terminal) after installing so it picks up the updated <code>PATH</code>.</li>
+    </ul>
+
+    <h3>Verify Node and npm</h3>
+    <p>In Cursor’s terminal, run:</p>
+    <pre class="terminal"><code>node -v
 npm -v</code></pre>
-        <ul>
-          <li>You should see version numbers if installation was successful</li>
-        </ul>
-      </li>
-      <li><strong>Create a React App:</strong>
-        <ul>
-          <li>Create a folder for your app (e.g. <code>my-app</code>)</li>
-          <li>Open that folder in Cursor (<strong>File &gt; Open Folder</strong>)</li>
-          <li>In Cursor's terminal, run:</li>
-        </ul>
-        <pre class="terminal"><code>npx create-react-app .</code></pre>
-        <ul>
-          <li>This creates all the React files inside the current folder</li>
-          <li>To run the app, in the terminal run:</li>
-        </ul>
-        <pre class="terminal"><code>npm start</code></pre>
-        <ul>
-          <li>The app will open in your browser at <code>http://localhost:3000</code></li>
-        </ul>
-      </li>
-      <li><strong>Note:</strong> Cursor usually detects Node.js automatically — no need to configure paths.</li>
+    <p>You should see version numbers (for example, Node <code>v24.x</code> and an npm version). If you get “command not found,” reopen the terminal or restart Cursor and try again.</p>
+
+    <h3>Create a Vite + React app</h3>
+    <ul>
+      <li>In Cursor’s terminal, go to the folder where you want the project (for example your Desktop or course folder).</li>
+      <li>Create a new app with the React template:</li>
+    </ul>
+    <pre class="terminal"><code>npm create vite@latest my-app -- --template react
+cd my-app
+npm install</code></pre>
+    <ul>
+      <li>Open the project in Cursor with <strong>File &gt; Open Folder</strong> and select <code>my-app</code>.</li>
+      <li>Start the development server:</li>
+    </ul>
+    <pre class="terminal"><code>npm run dev</code></pre>
+    <ul>
+      <li>Vite will print a local URL (usually <code>http://localhost:5173</code>). Open that link in your browser.</li>
+      <li>Stop the server with <code>Ctrl + C</code> in the terminal when you are done.</li>
+      <li><strong>Note:</strong> Cursor usually detects Node.js automatically — you do not need to set a special “Node interpreter” path.</li>
     </ul>
 
       <h2 id="github">GitHub</h2>
-      <p>For a video walkthrough on how to install git on a Windows machine, see this <a href="https://www.youtube.com/watch?v=VWbX2B3Q-1g" target="_blank">YouTube tutorial</a>.</p>
-      <p>For a video walkthrough on how to install git on a Mac machine, see this <a href="https://www.youtube.com/watch?v=B4qsvQ5IqWk" target="_blank">YouTube tutorial</a>.</p>      
+      <p>Optional video walkthroughs: <a href="https://www.youtube.com/watch?v=VWbX2B3Q-1g" target="_blank">install Git on Windows</a> · <a href="https://www.youtube.com/watch?v=B4qsvQ5IqWk" target="_blank">install Git on Mac</a>.</p>
+
+      <h3>Create a GitHub account</h3>
       <ul>
-        <li><strong>Create a GitHub Account:</strong>
-          <ul>
-            <li>Go to <a href="https://github.com/" target="_blank">https://github.com/</a></li>
-            <li>Click <strong>Sign up</strong> and follow the instructions to create a free account.</li>
-            <li>Verify your email address.</li>
-          </ul>
-        </li>
-        <li><strong>Download and Install Git:</strong>
-          <ul>
-            <li><strong>Windows:</strong> Go to <a href="https://git-scm.com/download/win" target="_blank">https://git-scm.com/download/win</a> and download the "64-bit Git for Windows Setup." Run the installer and accept the default settings.</li>
-            <li><strong>Mac:</strong> Simply open your terminal and type <code>git</code>. A popup will appear asking if you want to install the "Command Line Developer Tools." Click <strong>Install</strong>. (Alternatively, use <code>brew install git</code> if you have Homebrew).</li>
-          </ul>
-        </li>
-        <li><strong>Integrate GitHub with Cursor:</strong>
-          <ul>
-            <li>Open <strong>Cursor</strong>.</li>
-            <li>Open the integrated terminal (<code>Ctrl + `</code> or <code>View &gt; Terminal</code>).</li>
-            <li>Set your Git identity (this attaches your name to your code changes):</li>
-          </ul>
-          <pre class="terminal"><code>git config --global user.name "Your Name"
-git config --global user.email "your@email.com"</code></pre>
-          <ul>
-            <li><strong>Authentication:</strong> The easiest way is to click the <strong>Accounts icon</strong> (bottom-left corner of Cursor) and select <strong>"Sign in with GitHub"</strong>. This handles the security tokens for you.</li>
-            <li>Alternatively, you can authenticate via the terminal by trying to clone a repository:</li>
-          </ul>
-          <pre class="terminal"><code>git clone https://github.com/your-username/your-repo.git</code></pre>
-          <ul>
-            <li>Follow the browser prompt to sign in. Once authorized, you won't have to sign in again.</li>
-            <li>To verify everything is working, run:</li>
-          </ul>
-          <pre class="terminal"><code>git --version
-git config --list</code></pre>
-          <ul>
-            <li><strong>Pro Tip:</strong> You can now use the <strong>Source Control tab</strong> (the branch icon on the left sidebar) in Cursor to stage and commit changes without typing commands!</li>
-          </ul>
-        </li>
+        <li>Go to <a href="https://github.com/" target="_blank">https://github.com/</a></li>
+        <li>Click <strong>Sign up</strong> and follow the steps to create a free account</li>
+        <li>Verify your email address</li>
       </ul>
+
+      <h3>Install Git</h3>
+      <ul>
+        <li><strong>Windows:</strong>
+          <ul>
+            <li>Go to <a href="https://git-scm.com/download/win" target="_blank">https://git-scm.com/download/win</a></li>
+            <li>Download and run the 64-bit Git for Windows installer</li>
+            <li>Accept the defaults (this includes <strong>Git Credential Manager</strong>, which handles GitHub sign-in in the browser)</li>
+            <li>After installing, fully quit and reopen Cursor so the terminal can find <code>git</code></li>
+          </ul>
+        </li>
+        <li><strong>Mac:</strong>
+          <ul>
+            <li>Open Terminal and run <code>git --version</code></li>
+            <li>If Git is not installed, macOS will offer <strong>Command Line Developer Tools</strong> — click <strong>Install</strong></li>
+            <li>Alternatively, if you use Homebrew: <code>brew install git</code></li>
+          </ul>
+        </li>
+        <li>Verify in Cursor’s terminal:</li>
+      </ul>
+      <pre class="terminal"><code>git --version</code></pre>
+
+      <h3>Set your Git identity</h3>
+      <p>Do this once. Use the same email you use for GitHub (or the noreply email from GitHub Settings &gt; Emails):</p>
+      <pre class="terminal"><code>git config --global user.name "Your Name"
+git config --global user.email "your@email.com"</code></pre>
+
+      <h3>Connect GitHub to Cursor</h3>
+      <p>Connect GitHub online in your Cursor dashboard (this is the official integration):</p>
+      <ol>
+        <li>Go to <a href="https://cursor.com/dashboard/integrations" target="_blank">https://cursor.com/dashboard/integrations</a> (sign in to Cursor if asked).</li>
+        <li>Click <strong>Connect</strong> next to GitHub (or <strong>Manage Connections</strong> if you connected before).</li>
+        <li>Authorize Cursor in the GitHub browser window and choose <strong>All repositories</strong> or <strong>Selected repositories</strong>.</li>
+        <li>Return to the dashboard and confirm GitHub shows as connected.</li>
+      </ol>
+      <p>For everyday <code>git clone</code> / <code>git push</code> / <code>git pull</code> from Cursor’s terminal, Git still needs its own sign-in the first time:</p>
+      <pre class="terminal"><code>git clone https://github.com/your-username/your-repo.git</code></pre>
+      <ul>
+        <li>A browser window should open (Git Credential Manager on Windows, or the system prompt on Mac). Sign in to GitHub and approve access.</li>
+        <li>After that, push and pull from the terminal or the <strong>Source Control</strong> tab should work without typing a password each time.</li>
+      </ul>
+      <ul>
+        <li><strong>Pro Tip:</strong> Use the <strong>Source Control</strong> tab (branch icon in the left sidebar) to stage and commit without typing Git commands.</li>
+        <li>Quick sanity check:</li>
+      </ul>
+      <pre class="terminal"><code>git --version
+git config --global --get user.name
+git config --global --get user.email</code></pre>
 
       <h2 id="elevenlabs">ElevenLabs</h2>
       <ul>
