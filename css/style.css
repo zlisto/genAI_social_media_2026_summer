@@ -399,3 +399,36 @@ ol {
   font-size: 18px;
   line-height: 1.6;
 }
+
+/* Soft anti-copy deterrent for homework pages (not screenshot-proof) */
+.no-select-assignment body,
+.no-select-assignment main,
+.no-select-assignment .assignment-box,
+.no-select-assignment .schedule-header,
+.no-select-assignment table,
+.no-select-assignment pre,
+.no-select-assignment code {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+
+.no-select-assignment a {
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+@media print {
+  .no-select-assignment body * {
+    visibility: hidden !important;
+  }
+  .no-select-assignment body::before {
+    content: "Printing this homework page is disabled. Use the course site in your browser.";
+    visibility: visible !important;
+    display: block;
+    padding: 2rem;
+    font-size: 1.1rem;
+  }
+}
