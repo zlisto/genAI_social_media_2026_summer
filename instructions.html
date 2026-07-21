@@ -20,6 +20,7 @@
   <div class="wrapper">
     <div class="sidebar">
       <a href="#cursor">Cursor</a>
+      <a href="#python">Python</a>
       <a href="#streamlit">Streamlit</a>
       <a href="#react">Node.js (React)</a>
       <a href="#github">GitHub</a>
@@ -42,6 +43,9 @@
           <li>Open the Cursor installer and follow the instructions to install Cursor</li>
         </ul>
 
+      <h2 id="python">Python</h2>
+        <p>Install Python once, then connect it to Cursor so Streamlit apps and other Python projects run correctly.</p>
+
         <h3>Install Python</h3>
         <ul>
           <li><strong>Windows:</strong> 
@@ -51,11 +55,23 @@
               <li><strong>Important:</strong> Check the box that says <code>Add Python to PATH</code> before clicking "Install Now"</li>
             </ul>
           </li>
-          <li><strong>Mac:</strong>
+          <li><strong>Mac (recommended: Homebrew):</strong>
             <ul>
-              <li>Go to <a href="https://www.python.org/downloads/mac-osx/" target="_blank">python.org/downloads/mac-osx</a></li>
-              <li>Download the latest macOS <code>.pkg</code> installer</li>
-              <li>Open the installer and follow the installation steps</li>
+              <li>If you do not already have Homebrew, install it by pasting this command into Terminal and following the prompts (you may need your Mac password and Xcode Command Line Tools):
+                <pre class="terminal"><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+                Optional walkthrough: <a href="https://www.youtube.com/watch?v=IWJKRmFLn-g" target="_blank">install Homebrew on Mac (YouTube)</a>.
+              </li>
+              <li>After Homebrew finishes, follow any on-screen steps it prints to add <code>brew</code> to your <code>PATH</code> (Apple Silicon Macs usually need two extra lines in <code>~/.zprofile</code>). Then open a <strong>new</strong> Terminal window and confirm:
+                <pre class="terminal"><code>brew --version</code></pre>
+              </li>
+              <li>Install Python:
+                <pre class="terminal"><code>brew install python</code></pre>
+              </li>
+              <li>Verify (use <code>python3</code>, not <code>python</code>):
+                <pre class="terminal"><code>python3 --version
+which python3</code></pre>
+              </li>
+              <li><strong>Fallback:</strong> If Homebrew is blocked on a school/work Mac, use the official installer instead: go to <a href="https://www.python.org/downloads/mac-osx/" target="_blank">python.org/downloads/mac-osx</a>, download the latest macOS <code>.pkg</code>, and run it.</li>
             </ul>
           </li>
         </ul>
@@ -68,10 +84,12 @@
           <li>Choose the Python version from the list, or click "Enter interpreter path" to manually locate it:
             <ul>
               <li><strong>Windows example:</strong> <code>C:\Users\YourName\AppData\Local\Programs\Python\Python3x\python.exe</code></li>
-              <li><strong>Mac example:</strong> <code>/usr/local/bin/python3</code> (you can find it by running <code>which python3</code> in Terminal)</li>
+              <li><strong>Mac (Apple Silicon / Homebrew):</strong> <code>/opt/homebrew/bin/python3</code></li>
+              <li><strong>Mac (Intel / Homebrew or python.org):</strong> often <code>/usr/local/bin/python3</code></li>
+              <li>If unsure, run <code>which python3</code> in Terminal and paste that path</li>
             </ul>
           </li>
-          <li>Restart Cursor to apply the new interpreter</li>
+          <li>Restart Cursor (or open a new terminal) so it picks up the updated <code>PATH</code></li>
         </ul>
 
       <h2 id="streamlit">Streamlit Apps</h2>
