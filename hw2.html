@@ -100,7 +100,7 @@
  
       <h2>Agent Requirements</h2>
       <p>
-        Your agent reads your project proposal file <code>project_proposal.md</code>, builds a video reel about your final project, and saves slides, audio, and grading artifacts. All LLM output of the agent uses <code>gpt-5.6-luna</code>. Your final submission must include:
+        Your agent reads your project proposal file <code>project_proposal.md</code>, builds a video reel about your final project, and saves slides, audio, and grading artifacts. All LLM output of the agent uses <code>gpt-5.6-luna</code>. All TTS output of the agent uses <code>tts-1-hd</code>. Your final submission must include:
       </p>
 
       <ol>
@@ -124,10 +124,8 @@
         </li>
         <li>
           <strong>Narration + TTS:</strong> For each slide, use the narration text from the slide plan and synthesize
-          speech with OpenAI TTS using model <code>tts-1-hd</code>
-          (e.g. <code>client.audio.speech.create(model=&quot;tts-1-hd&quot;, ...)</code>).
-          Do <strong>not</strong> use <code>tts-1</code>—the course API key only has access to <code>tts-1-hd</code>.
-          Keep each clip short (about 15 seconds or less) to control cost.
+          speech with OpenAI TTS model <code>tts-1-hd</code>. Optionally, you may use a Google Gemini API key instead
+          for more expressive / interesting voices. Keep each clip short (about 15 seconds or less) to control cost.
           Max <strong>6</strong> slides.
         </li>
         <li>
